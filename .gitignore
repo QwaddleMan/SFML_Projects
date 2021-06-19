@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+Boids/sim_1/bin/App
+Boids/sim_1/resources/bird_resources/
+Boids/sim_1/resources/bird_resources/*
+
