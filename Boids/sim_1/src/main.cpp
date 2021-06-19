@@ -5,7 +5,7 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(1000,1000), "SFML works!");
 
-    sf::Texture bird_fly;
+    sf:: bird_fly;
     bird_fly.loadFromFile("resources/__black_flying_bird_2_flying.png");
 
     int w = 662, h = 683;

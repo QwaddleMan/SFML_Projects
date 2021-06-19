@@ -7,15 +7,21 @@ Animator::Animator(const sf::Texture &copy, int w, int h, int r, int c) : sf::Te
   height = h;
   r = rows;
   c = cols;
-  position.x = 0;
-  position.y = 0;
 
   sw = width/cols;
   sh = height/rows;
 
   size = cols * rows;
-  
-  rect = new sf::IntRect(position.x, position.y
+    
+  rect = new sf::IntRect(0,0,sw,sh);
+
+}
+
+void Animator::animate()
+{
+  pos++;
+  rect.left = (pos % cols)* sw;
+  rect.top = (pos/cols)*sh;
 
 }
 
