@@ -6,6 +6,7 @@ class Vehical : public sf::Sprite
 {
   public:
     Vehical(const sf::Texture &texture , const sf::IntRect &rectangle);
+    float mag(sf::Vector2<float> vec);
     void update();
   private:
     float mass;

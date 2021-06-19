@@ -11,7 +11,7 @@ int main()
   
   Vehical bird(bird_fly, *bird_fly.rect);
   bird.setOrigin(bird_fly.center.x, bird_fly.center.y);
-  bird.setPosition(100,100);
+  bird.setPosition(100,300);
   bird.setScale(-0.3F, 0.3F);
 
   while (window.isOpen())
@@ -26,6 +26,7 @@ int main()
     
     bird_fly.animate();
     bird.setTextureRect(*bird_fly.rect);
+    bird.update();
 
     window.clear();
     window.draw(bird);
