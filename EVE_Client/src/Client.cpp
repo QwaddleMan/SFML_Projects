@@ -7,19 +7,21 @@ void Client::setup()
 
   btnUp.loadFromFile("resources/button.png", sf::IntRect(0, 0, 200, 200));
   btnDown.loadFromFile("resources/button.png", sf::IntRect(200, 0, 200, 200));
-  myButton = new Button(btnUp, btnDown, "hello");
+  myButton = new Button(btnUp, "hello");
+  myButton->setPressedTexture(btnDown);
   myButton->setPosition(100.f, 100.f);
 
 }
 
 void Client::update()
 {
-
+  bool a = myButton->isPressed(*this);
 }
 
 void Client::visualize()
 {
   draw(*shape);
   // draw(*mySprite);
-  myButton->draw(*this);
+  draw(*myButton);
+  // myButton->draw(*this);
 }

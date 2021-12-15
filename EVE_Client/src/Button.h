@@ -1,22 +1,15 @@
-#include <SFML/Graphics.hpp>
+#include "Clickable.h"
 
 #ifndef BUTTON_H
 #define BUTTON_H
 
-class Button : public sf::Sprite
+class Button : public Clickable
 {
-
 public:
-  Button(sf::Texture & btnUpTex, sf::Texture & btnDownTex, const std::string text);
-  void draw(sf::RenderWindow & window);
-  void update();
-  bool isClicked();
+    Button(sf::Texture & texture, const std::string text);
 
 private:
-  sf::Texture * btnUp;
-  sf::Texture * btnDown;
-  sf::Text * text;
-
+    sf::Text * text;
 };
 
 #endif
