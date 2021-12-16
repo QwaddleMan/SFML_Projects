@@ -5,13 +5,13 @@ Clickable::Clickable(sf::Texture & mainTex)
   txtReleased = &mainTex;
   setTexture(*txtReleased);
   txtPressed = nullptr;
+  pressed = false;
 }
 
 Clickable::~Clickable()
 {
   delete txtPressed;
   delete txtReleased;
-  printf("oogy boogy");
 }
 
 void Clickable::setPressedTexture(sf::Texture & pressedTex)
@@ -36,14 +36,25 @@ bool Clickable::containsCursor(sf::Vector2i mpos)
   return false;
 }
 
-bool Clickable::isPressed(const sf::Window & window)
+bool Clickable::isPressed(const sf::RenderWindow & window)
 {
   sf::Vector2i mPos = sf::Mouse::getPosition(window);
+  sf::Vector2f mPosCon = window.mapPixelToCoords(mPos);
   if(containsCursor(mPos) && sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
   {
     setTexture(*txtPressed);
+    pressed = true;
     return true;
   }
   setTexture(*txtReleased);
+  return false;
+}
+
+bool Clickable::isReleased(const sf::RenderWindow & window)
+{
+  if(pressed && !isPressed(window))
+  {
+    return true;
+  }
   return false;
 }

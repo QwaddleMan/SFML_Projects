@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Button.h"
-#include <cstdio>
+#include "Singleton.h"
+#include <stdio.h>
 
 #ifndef CLIENT_H
 #define CLIENT_H
@@ -14,11 +15,11 @@ protected:
   void update();
   void visualize();
 private:
-  sf::CircleShape * shape;
-  Button * myButton;
 
+  Button * myButton;
   sf::Texture btnUp;
   sf::Texture btnDown;
+  sf::Text * text;
 };
 
 #endif

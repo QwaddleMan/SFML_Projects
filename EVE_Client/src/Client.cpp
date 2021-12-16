@@ -2,26 +2,30 @@
 
 void Client::setup()
 {
-  shape = new sf::CircleShape(100.f);
-  shape->setFillColor(sf::Color::Green);
-
   btnUp.loadFromFile("resources/button.png", sf::IntRect(0, 0, 200, 200));
   btnDown.loadFromFile("resources/button.png", sf::IntRect(200, 0, 200, 200));
   myButton = new Button(btnUp, "hello");
   myButton->setPressedTexture(btnDown);
   myButton->setPosition(100.f, 100.f);
+  Singleton& s = Singleton::getInstance();
+  sf::Font myFont;
+  myFont.loadFromFile("resources/fonts/DejaVuSansMono.ttf");
+  s.font = myFont;
 
 }
 
 void Client::update()
 {
-  bool a = myButton->isPressed(*this);
+  if(myButton->isReleased(*this))
+  {
+    printf("%s\n", "hahaha fuck this works");
+  }
 }
 
 void Client::visualize()
 {
-  draw(*shape);
-  // draw(*mySprite);
-  draw(*myButton);
-  // myButton->draw(*this);
+  // sf::View view = getDefaultView();
+  // setView(view);
+  // draw(*text);
+  myButton->draw(*this);
 }

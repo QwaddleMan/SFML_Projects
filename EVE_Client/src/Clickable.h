@@ -14,7 +14,8 @@ public:
     Clickable(sf::Texture & mainTex);
     ~Clickable();
     void setPressedTexture(sf::Texture & btnUpTex);
-    bool isPressed(const sf::Window & window);
+    bool isPressed(const sf::RenderWindow & window);
+    bool isReleased(const sf::RenderWindow & window);
 
 protected:
     bool containsCursor(sf::Vector2i mpos);
@@ -22,6 +23,7 @@ protected:
 private:
   sf::Texture * txtPressed;
   sf::Texture * txtReleased;
+  bool pressed;
 
 
 };
