@@ -15,6 +15,7 @@ public:
 
 public:
   sf::Font font;
+  sf::RenderWindow * window;
 };
 
 #endif

@@ -1,0 +1,15 @@
+file(GLOB SOURCES *.cpp *.h)
+add_executable(EVE_Client ${SOURCES})
+set(CMAKE_VERBOSE_MAKEFILE on)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(SFML REQUIRED sfml-all)
+pkg_check_modules(SIGC REQUIRED sigc++-2.0)
+
+target_link_libraries(EVE_Client ${SFML_LIBRARIES} ${SIGC_LIBRARIES})
+target_compile_options(EVE_Client PUBLIC ${SFML_CFLAGS} PUBLIC ${SIGC_CFLAGS})
+message("huh ${SIGC_CFLAGS} ${SIGC_LIBRARIES}")
+message("WHA ${SFML_CFLAGS} ${SFML_LIBRARIES}")

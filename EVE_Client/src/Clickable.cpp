@@ -5,13 +5,11 @@ Clickable::Clickable(sf::Texture & mainTex)
   txtReleased = &mainTex;
   setTexture(*txtReleased);
   txtPressed = nullptr;
-  pressed = false;
+  buttonDown = false;
 }
 
 Clickable::~Clickable()
 {
-  delete txtPressed;
-  delete txtReleased;
 }
 
 void Clickable::setPressedTexture(sf::Texture & pressedTex)
@@ -19,42 +17,50 @@ void Clickable::setPressedTexture(sf::Texture & pressedTex)
   txtPressed = &pressedTex;
 }
 
-// void Button::draw(sf::RenderWindow & window)
-// {
-//   window.draw(*this);
-// }
-
 bool Clickable::containsCursor(sf::Vector2i mpos)
 {
-  // sf::Vector2f position = getPosition();
   sf::FloatRect rect = getGlobalBounds();
+
   if((mpos.x >= rect.left && mpos.x <= rect.left + rect.width) &&
       (mpos.y >= rect.top && mpos.y <= rect.top+rect.height))
   {
+    hover_signal.emit();
     return true;
   }
   return false;
 }
 
-bool Clickable::isPressed(const sf::RenderWindow & window)
+void Clickable::check()
 {
-  sf::Vector2i mPos = sf::Mouse::getPosition(window);
-  sf::Vector2f mPosCon = window.mapPixelToCoords(mPos);
-  if(containsCursor(mPos) && sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+  Singleton& s = Singleton::getInstance();
+  sf::Vector2i mPos = sf::Mouse::getPosition(*s.window);
+  sf::Vector2f mPosCon = s.window->mapPixelToCoords(mPos);
+  if(containsCursor(mPos))
   {
-    setTexture(*txtPressed);
-    pressed = true;
-    return true;
+    wasHovering = true;
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+    {
+      if(txtPressed != nullptr)
+        setTexture(*txtPressed);
+      pressed_signal.emit();
+      buttonDown = true;
+    }
+    else
+    {
+      if(buttonDown)
+      {
+          released_signal.emit();
+          buttonDown = false;
+      }
+      setTexture(*txtReleased);
+    }
   }
-  setTexture(*txtReleased);
-  return false;
-}
-
-bool Clickable::isReleased(const sf::RenderWindow & window)
-{
-  if(pressed && !isPressed(window))
+  else
   {
-    return true;
+    if(wasHovering)
+    {
+      wasHovering = false;
+      mouseout_signal.emit();
+    }
   }
-  return false;
 }

@@ -3,7 +3,6 @@
 Button::Button(sf::Texture & texture, const std::string btnText)
   : Clickable{texture}
 {
-  // text = new sf::Text();
   Singleton& s = Singleton::getInstance();
   text.setFont(s.font);
   text.setCharacterSize(12);
@@ -19,7 +18,6 @@ Button::~Button()
 
 void Button::draw(sf::RenderWindow & window)
 {
-
   window.draw(*this);
   sf::FloatRect bounds = getGlobalBounds();
   int x = bounds.left + (bounds.width/2);
