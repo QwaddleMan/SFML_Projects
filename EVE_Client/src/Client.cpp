@@ -14,16 +14,6 @@ void Client::setup()
   myButton->setPressedTexture(btnDown);
   myButton->setPosition(100.f, 100.f);
 
-  // b = new Button(btnUp, "hello");
-  // b->pressed_signal.connect(sigc::ptr_fun(btn1Pressed));
-  // b->released_signal.connect(sigc::ptr_fun(btn1Released));
-  // b->hover_signal.connect(sigc::ptr_fun(btn1Hover));
-  // b->mouseout_signal.connect(sigc::ptr_fun(btn1Off));
-  // b->setPressedTexture(btnDown);
-  // b->setPosition(100.f, 100.f);
-
-
-
   btnManage.buttons.push_back(myButton);
   sf::Font myFont;
   myFont.loadFromFile("resources/fonts/DejaVuSansMono.ttf");
@@ -41,7 +31,7 @@ void Client::update()
 void Client::visualize()
 {
   // b->draw(*this);
-  btnManage.draw(*this);
+  btnManage.draw();
 }
 
 void Client::btn1Pressed()

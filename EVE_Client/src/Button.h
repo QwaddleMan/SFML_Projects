@@ -9,7 +9,7 @@ class Button : public Clickable
 public:
     Button(sf::Texture & texture, const std::string btnText);
     ~Button();
-    void draw(sf::RenderWindow & window);
+    void draw();
 
 private:
     sf::Text text;

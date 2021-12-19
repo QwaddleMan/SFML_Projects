@@ -9,7 +9,7 @@ class ButtonManager
 {
   public:
     void update();
-    void draw(sf::RenderWindow & window);
+    void draw();
   public:
     std::vector< std::shared_ptr<Button> > buttons;
 };

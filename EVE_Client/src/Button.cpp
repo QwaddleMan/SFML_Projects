@@ -16,12 +16,13 @@ Button::~Button()
   // delete text;
 }
 
-void Button::draw(sf::RenderWindow & window)
+void Button::draw()
 {
-  window.draw(*this);
+  Singleton & s = Singleton::getInstance();
+  s.window->draw(*this);
   sf::FloatRect bounds = getGlobalBounds();
   int x = bounds.left + (bounds.width/2);
   int y = bounds.top + (bounds.height/2);
   text.setPosition(x, y);
-  window.draw(text);
+  s.window->draw(text);
 }

@@ -8,10 +8,10 @@ void ButtonManager::update()
   }
 }
 
-void ButtonManager::draw(sf::RenderWindow & window)
+void ButtonManager::draw()
 {
   for(int i = 0; i < buttons.size(); i++)
   {
-    buttons.at(i)->draw(window);
+    buttons.at(i)->draw();
   }
 }
